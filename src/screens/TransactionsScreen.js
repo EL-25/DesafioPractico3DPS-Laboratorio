@@ -159,3 +159,134 @@ export default function TransactionsScreen() {
     }
   };
 
+  const confirmDeleteCategory = (categoryName) => {
+    const foundCategory = customCategories.find(c => c.name.toLowerCase() === categoryName.toLowerCase());
+    if (!foundCategory) {
+      Alert.alert('Aviso', 'Las categorías predeterminadas no se pueden eliminar.');
+      return;
+    }
+    Alert.alert(
+      'Eliminar Categoría',
+      `¿Estás seguro de borrar permanentemente "${categoryName}"?`,
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        { 
+          text: 'Eliminar', 
+          style: 'destructive', 
+          onPress: async () => {
+            try {
+              await deleteCustomCategory(foundCategory.id);
+              if (category === categoryName) setCategory('');
+              if (filterCategory === categoryName) setFilterCategory('');
+            } catch (error) {
+              Alert.alert('Error', 'No se pudo eliminar la categoría.');
+            }
+          } 
+        }
+      ]
+    );
+  };
+
+  const confirmDeleteAccount = (account) => {
+    const protectedNames = ['efectivo', 'tarjeta', 'cuenta banco', 'banco'];
+    const currentNameClean = account.name.toLowerCase().trim();
+    
+    if (account.id.startsWith('default_') || protectedNames.includes(currentNameClean)) {
+      Alert.alert('Acceso Denegado', 'Esta cuenta es requerida por el sistema.');
+      return;
+    }
+
+    Alert.alert(
+      'Eliminar Cuenta',
+      `¿Estás seguro de borrar "${account.name}"?`,
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        { 
+          text: 'Eliminar', 
+          style: 'destructive', 
+          onPress: async () => {
+            try {
+              await deleteAccount(account.id);
+              if (accountId === account.id) setAccountId('');
+            } catch (error) {
+              Alert.alert('Error', 'No se pudo eliminar la cuenta.');
+            }
+          } 
+        }
+      ]
+    );
+  };
+
+  const handleSave = async () => {
+    const rawAmount = amount.replace('$', '');
+    if (!rawAmount.trim() || !category.trim() || !description.trim() || !accountId) {
+      Alert.alert('Campos vacíos', 'Asegúrate de llenar todos los datos.');
+      return;
+    }
+    if (isNaN(Number(rawAmount)) || Number(rawAmount) <= 0) {
+      Alert.alert('Monto Inválido', 'Ingresa un número mayor a cero.');
+      return;
+    }
+
+    const transactionData = {
+      amount: Number(rawAmount),
+      type,
+      category: category.trim(),
+      accountId,
+      description: description.trim(),
+      date: getDatabaseDateString(dateObject)
+    };
+
+    try {
+      if (editingId) {
+        await updateTransaction(editingId, transactionData);
+        Alert.alert('Modificado', 'La transacción fue actualizada.');
+      } else {
+        await addTransaction(transactionData);
+        Alert.alert('Guardado', 'La transacción fue registrada.');
+      }
+      resetForm();
+    } catch (e) {
+      Alert.alert('Error', 'Hubo un problema al guardar.');
+    }
+  };
+
+  const resetForm = () => {
+    setEditingId(null);
+    setAmount('$');
+    setCategory('');
+    setDescription('');
+    setType('expense');
+    if (displayAccounts.length > 0) setAccountId(displayAccounts[0].id);
+    setDateObject(new Date());
+    setShowCatSelector(false);
+  };
+
+  const handleSelectEdit = (item) => {
+    setEditingId(item.id);
+    setAmount(`$${item.amount}`);
+    setType(item.type);
+    setCategory(item.category);
+    setAccountId(item.accountId);
+    setDescription(item.description);
+    if (item.date) {
+      setDateObject(new Date(`${item.date}T12:00:00`));
+    }
+  };
+
+  const confirmDelete = (id) => {
+    Alert.alert(
+      'Confirmar Eliminación',
+      '¿Deseas borrar permanentemente esta transacción?',
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        { text: 'Eliminar', style: 'destructive', onPress: () => deleteTransaction(id) }
+      ]
+    );
+  };
+
+  const handleOpenTicket = (item) => {
+    setSelectedTicket(item);
+    setIsTicketVisible(true);
+  };
+
