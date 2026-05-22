@@ -261,3 +261,155 @@ export default function BudgetsScreen() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { 
+    flex: 1, 
+    padding: normalize(16) 
+  },
+  card: { 
+    padding: normalize(20), 
+    borderRadius: normalize(16), 
+    borderWidth: 1, 
+    marginBottom: normalize(24) 
+  },
+  cardTitle: { 
+    fontSize: normalize(16), 
+    fontWeight: '700', 
+    marginBottom: normalize(18) 
+  },
+  inputLabel: { 
+    fontSize: normalize(11), 
+    fontWeight: '600', 
+    marginBottom: normalize(6), 
+    textTransform: 'uppercase', 
+    letterSpacing: 0.5 
+  },
+  currencyInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: normalize(12),
+    borderWidth: 1,
+    marginBottom: normalize(16),
+    paddingLeft: normalize(16),
+    height: normalize(48)
+  },
+  currencySymbol: {
+    fontSize: normalize(16),
+    fontWeight: '600',
+    marginRight: normalize(2)
+  },
+  currencyInput: {
+    flex: 1,
+    paddingVertical: normalize(10),
+    paddingRight: normalize(16),
+    fontSize: normalize(15),
+    fontWeight: '500'
+  },
+  customSelectTrigger: { 
+    paddingHorizontal: normalize(16), 
+    borderRadius: normalize(12), 
+    marginBottom: normalize(16), 
+    borderWidth: 1, 
+    justifyContent: 'center', 
+    height: normalize(48) 
+  },
+  selectTriggerText: { 
+    fontSize: normalize(14)
+  },
+  btn: { 
+    padding: normalize(14), 
+    borderRadius: normalize(12), 
+    alignItems: 'center', 
+    justifyContent: 'center',
+    height: normalize(48),
+    marginTop: normalize(4) 
+  },
+  btnText: { 
+    color: '#FFFFFF', 
+    fontWeight: '600', 
+    fontSize: normalize(15) 
+  },
+  sectionHeader: { 
+    marginBottom: normalize(14) 
+  },
+  sectionTitle: { 
+    fontSize: normalize(16), 
+    fontWeight: '700' 
+  },
+  sectionSubtitle: { 
+    fontSize: normalize(12), 
+    marginTop: normalize(2) 
+  },
+  lblMini: { 
+    fontSize: normalize(11), 
+    fontWeight: '600', 
+    marginBottom: normalize(8), 
+    textTransform: 'uppercase', 
+    letterSpacing: 0.5 
+  },
+  scrollChipsWrapper: {
+    height: normalize(38), 
+    marginBottom: normalize(16)
+  },
+  chipContainer: { 
+    flexDirection: 'row' 
+  },
+  chip: { 
+    paddingVertical: normalize(6), 
+    paddingHorizontal: normalize(14), 
+    borderRadius: normalize(20), 
+    marginRight: normalize(8), 
+    borderWidth: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    height: normalize(32) 
+  },
+  chipText: { 
+    fontSize: normalize(12), 
+    fontWeight: '500' 
+  },
+  listContainerStyle: { 
+    borderRadius: normalize(16), 
+    borderWidth: 1, 
+    overflow: 'hidden' 
+  },
+  budgetListItem: { 
+    padding: normalize(16), 
+    borderBottomWidth: 1
+  },
+  budgetMainRow: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'space-between' 
+  },
+  rowDeleteBtn: { 
+    backgroundColor: '#FFF5F5', 
+    paddingVertical: normalize(8), 
+    paddingHorizontal: normalize(12), 
+    borderRadius: normalize(10), 
+    marginLeft: normalize(12),
+    borderWidth: 1,
+    borderColor: '#FFE3E3',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  rowDeleteBtnText: { 
+    color: '#E53E3E', 
+    fontSize: normalize(12), 
+    fontWeight: '600' 
+  },
+  emptyContainer: { 
+    paddingVertical: normalize(40), 
+    paddingHorizontal: normalize(16) 
+  },
+  empty: { 
+    textAlign: 'center', 
+    fontSize: normalize(14), 
+    fontStyle: 'italic' 
+  },
+  textWhite: { 
+    color: '#FFFFFF', 
+    fontWeight: '600' 
+  }
+});
