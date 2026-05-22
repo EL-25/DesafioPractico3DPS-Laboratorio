@@ -51,3 +51,33 @@ export default function TransactionsScreen() {
   } = useContext(FinanceContext) || {};
 
   const { theme, isDarkMode } = useContext(ThemeContext); 
+  
+  // --- ESTADOS DEL FORMULARIO DE CAPTURA/EDICIÓN ---
+  const [editingId, setEditingId] = useState(null);
+  const [amount, setAmount] = useState('$');
+  const [type, setType] = useState('expense'); 
+  const [category, setCategory] = useState('');
+  const [accountId, setAccountId] = useState('');
+  const [description, setDescription] = useState('');
+  
+  // --- ESTADOS PARA EL CALENDARIO Y SELECTORES ---
+  const [dateObject, setDateObject] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showCatSelector, setShowCatSelector] = useState(false);
+  const [showFilterCatSelector, setShowFilterCatSelector] = useState(false);
+
+  // --- ESTADO PARA CREAR NUEVOS ELEMENTOS ---
+  const [newAccountName, setNewAccountName] = useState('');
+  const [newCatName, setNewCatName] = useState('');
+
+  // --- ESTADOS DE FILTROS AVANZADOS ---
+  const [filterAccount, setFilterAccount] = useState('all');
+  const [filterCategory, setFilterCategory] = useState(''); 
+  const [filterPeriod, setFilterPeriod] = useState('all');
+  const [filterType, setFilterType] = useState('all');
+
+  // --- ESTADOS PARA EL MODAL TICKET ---
+  const [selectedTicket, setSelectedTicket] = useState(null);
+  const [isTicketVisible, setIsTicketVisible] = useState(false);
+
+  const displayAccounts = accounts.length > 0 ? accounts : DEFAULT_ACCOUNTS;
