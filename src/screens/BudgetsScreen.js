@@ -67,3 +67,67 @@ export default function BudgetsScreen() {
 
     return totals;
   }, [transactions]);
+   const handleSave = async () => {
+    const cleanCategory = category.trim();
+    const cleanLimit = limit.trim().replace(',', '.');
+
+    if (!cleanCategory || !cleanLimit) {
+      Alert.alert('Incompleto', 'Selecciona una categoría e ingresa el límite mensual.');
+      return;
+    }
+
+    const categoryExists = allCategories.some(
+      cat => cat.trim().toLowerCase() === cleanCategory.toLowerCase()
+    );
+
+    if (!categoryExists) {
+      Alert.alert('Categoría No Permitida', 'Solo puedes asignar presupuestos a las categorías existentes.');
+      return;
+    }
+
+    const budgetAlreadyExists = budgets.some(
+      b => b.category && b.category.trim().toLowerCase() === cleanCategory.toLowerCase()
+    );
+
+    if (budgetAlreadyExists) {
+      Alert.alert('Presupuesto Duplicado', `Ya definiste un límite para "${cleanCategory}".`);
+      return;
+    }
+
+    const numericLimit = Number(cleanLimit);
+    if (isNaN(numericLimit) || numericLimit <= 0) {
+      Alert.alert('Monto Inválido', 'Por favor, ingresa un límite numérico mayor a cero.');
+      return;
+    }
+
+    try {
+      await addBudget(cleanCategory, cleanLimit);
+      setCategory('');
+      setLimit('');
+      Alert.alert('Éxito', 'Límite establecido de forma correcta.');
+    } catch (error) {
+      Alert.alert('Error', 'No se pudo guardar el presupuesto.');
+    }
+  };
+
+  const handleDelete = (id, categoryName) => {
+    Alert.alert(
+      'Eliminar Presupuesto',
+      `¿Deseas quitar el límite de gastos mensual para "${categoryName}"?`,
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        { 
+          text: 'Eliminar', 
+          style: 'destructive', 
+          onPress: async () => {
+            try {
+              await deleteBudget(id);
+              Alert.alert('Eliminado', 'El presupuesto fue removido.');
+            } catch (error) {
+              Alert.alert('Error', 'No se pudo borrar el presupuesto.');
+            }
+          } 
+        }
+      ]
+    );
+  };
