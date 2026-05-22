@@ -15,6 +15,7 @@ import { AuthContext } from '../context/AuthContext';
 import { ThemeContext } from '../context/ThemeContext'; // 🚨 IMPORTACIÓN NUEVA
 import { PieChart } from 'react-native-chart-kit';
 import Ionicons from '@expo/vector-icons/Ionicons';
+
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const scale = SCREEN_WIDTH / 360; 
 
@@ -79,7 +80,7 @@ export default function DashboardScreen({ navigation }) {
       { cancelable: true }
     );
   };
-  
+
   // Sincronización del Header nativo con los colores del tema persistido
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -132,8 +133,8 @@ export default function DashboardScreen({ navigation }) {
     <ScrollView 
       style={[styles.container, { backgroundColor: theme.background }]} 
       showsVerticalScrollIndicator={false}
-    ></ScrollView>
-    
+    >
+      
       {/* 💳 CARD PREMIUM: BALANCE GENERAL NETO */}
       <View style={[styles.premiumCard, { backgroundColor: theme.premiumCard }]}>
         <Text style={[styles.premiumLabel, { color: theme.premiumText }]}>BALANCE NETO DISPONIBLE</Text>
@@ -159,7 +160,8 @@ export default function DashboardScreen({ navigation }) {
           </View>
         </View>
       </View>
-       {/* 🏦 SECCIÓN: SALDOS DE CUENTAS */}
+
+      {/* 🏦 SECCIÓN: SALDOS DE CUENTAS */}
       <View style={styles.sectionHeader}>
         <Text style={[styles.sectionTitle, { color: theme.textPrimary }]}>Tus Cuentas y Saldos</Text>
         <Text style={[styles.sectionSubtitle, { color: theme.textSecondary }]}>Distribución líquida actual</Text>
@@ -216,8 +218,6 @@ export default function DashboardScreen({ navigation }) {
       <View style={{ height: normalize(24) }} />
     </ScrollView>
   );
-}
-
 }
 
 const styles = StyleSheet.create({
