@@ -46,3 +46,24 @@ export default function BudgetsScreen() {
   
   // Estado para controlar visualmente el enfoque del teclado en el input numérico
   const [isLimitFocused, setIsLimitFocused] = useState(false);
+  // OPTIMIZACIÓN: Pre-calcular los gastos mensuales agrupados por categoría
+  const spentByCategory = useMemo(() => {
+    const currentYearMonth = new Date().toISOString().slice(0, 7); 
+    const totals = {};
+
+    transactions.forEach(t => {
+      if (
+        t && 
+        t.type === 'expense' && 
+        t.category && 
+        t.date && 
+        t.date.startsWith(currentYearMonth)
+      ) {
+        const catKey = t.category.trim().toLowerCase();
+        const amount = Number(t.amount || 0);
+        totals[catKey] = (totals[catKey] || 0) + amount;
+      }
+    });
+
+    return totals;
+  }, [transactions]);
