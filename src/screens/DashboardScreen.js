@@ -217,3 +217,187 @@ export default function DashboardScreen({ navigation }) {
     </ScrollView>
   );
 }
+
+}
+
+const styles = StyleSheet.create({
+  container: { 
+    flex: 1, 
+    padding: normalize(16) 
+  },
+  headerProfileCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: SCREEN_WIDTH - normalize(140), 
+  },
+  avatarCircle: {
+    width: normalize(36),
+    height: normalize(36),
+    borderRadius: normalize(18),
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: normalize(8),
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3
+  },
+  avatarText: {
+    color: '#fff',
+    fontSize: normalize(12),
+    fontWeight: 'bold',
+    letterSpacing: 0.5
+  },
+  profileInfoContainer: {
+    justifyContent: 'center',
+    flex: 1
+  },
+  welcomeLabel: {
+    fontSize: normalize(9),
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5
+  },
+  userName: {
+    fontSize: normalize(13),
+    fontWeight: '700',
+    marginTop: normalize(1),
+    textTransform: 'capitalize'
+  },
+  headerRightContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: '100%',
+  },
+  headerIconTouch: {
+    padding: normalize(8),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  headerLogoutButton: {
+    paddingHorizontal: normalize(12),
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  premiumCard: { 
+    padding: normalize(20), 
+    borderRadius: normalize(16), 
+    marginBottom: normalize(24), 
+    marginTop: normalize(8),
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8
+  },
+  premiumLabel: { 
+    fontSize: normalize(11), 
+    fontWeight: '700',
+    letterSpacing: 1
+  },
+  premiumBalance: { 
+    fontSize: normalize(30), 
+    fontWeight: '800', 
+    marginVertical: normalize(8),
+    letterSpacing: -0.5
+  },
+  premiumRow: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    marginTop: normalize(14),
+    paddingTop: normalize(14),
+    borderTopWidth: 1,
+    borderColor: '#334155'
+  },
+  flowContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '48%'
+  },
+  indicatorDot: {
+    width: normalize(8),
+    height: normalize(8),
+    borderRadius: normalize(4),
+    marginRight: normalize(8)
+  },
+  flowLabel: { 
+    fontSize: normalize(11), 
+    fontWeight: '500'
+  },
+  flowValue: { 
+    fontSize: normalize(14), 
+    fontWeight: '600', 
+    color: '#F8FAFC',
+    marginTop: normalize(1)
+  },
+  sectionHeader: {
+    marginBottom: normalize(10),
+    marginTop: normalize(4)
+  },
+  sectionTitle: { 
+    fontSize: normalize(16), 
+    fontWeight: '700', 
+  },
+  sectionSubtitle: {
+    fontSize: normalize(12),
+    marginTop: normalize(1)
+  },
+  listCardContainer: {
+    borderRadius: normalize(12),
+    borderWidth: 1,
+    marginBottom: normalize(24),
+    overflow: 'hidden'
+  },
+  accountRow: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center',
+    padding: normalize(16), 
+    borderBottomWidth: 1, 
+  },
+  accountInfoLeft: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  accountIconDummy: {
+    width: normalize(32),
+    height: normalize(32),
+    borderRadius: normalize(8),
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: normalize(12)
+  },
+  accountIconText: {
+    fontSize: normalize(16)
+  },
+  accName: { 
+    fontSize: normalize(14), 
+    fontWeight: '500',
+  },
+  accValue: { 
+    fontSize: normalize(14), 
+    fontWeight: '700', 
+  },
+  chartBox: { 
+    borderRadius: normalize(12), 
+    paddingVertical: normalize(16), 
+    alignItems: 'center',
+    borderWidth: 1,
+    marginBottom: normalize(24),
+    justifyContent: 'center'
+  },
+  emptyBox: {
+    borderRadius: normalize(12),
+    padding: normalize(24),
+    alignItems: 'center',
+    borderWidth: 1,
+    marginBottom: normalize(24)
+  },
+  emptyText: { 
+    textAlign: 'center', 
+    fontSize: normalize(13),
+    fontStyle: 'italic' 
+  }
+});
