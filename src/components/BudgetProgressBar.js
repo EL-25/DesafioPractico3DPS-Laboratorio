@@ -32,3 +32,13 @@ export default function BudgetProgressBar({ category, spent, limit }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  box: { backgroundColor: '#fff', padding: 14, borderRadius: 10, marginBottom: 8, elevation: 1 },
+  row: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 6 },
+  catName: { fontSize: 15, fontWeight: 'bold' },
+  val: { fontSize: 13, color: '#555' },
+  track: { height: 10, backgroundColor: '#e9ecef', borderRadius: 5, overflow: 'hidden' },
+  progress: { height: '100%', borderRadius: 5 },
+  warn: { fontSize: 11, fontWeight: 'bold', marginTop: 4, textAlign: 'right' }
+});
