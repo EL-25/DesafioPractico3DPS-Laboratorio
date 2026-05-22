@@ -38,3 +38,11 @@ export default function BudgetsScreen() {
     addBudget, 
     deleteBudget 
   } = useContext(FinanceContext) || {};
+  // 2. Consumo del tema global (Mismo mecanismo de Dashboard)
+  const { theme, isDarkMode } = useContext(ThemeContext) || {};
+  
+  const [category, setCategory] = useState('');
+  const [limit, setLimit] = useState('');
+  
+  // Estado para controlar visualmente el enfoque del teclado en el input numérico
+  const [isLimitFocused, setIsLimitFocused] = useState(false);
