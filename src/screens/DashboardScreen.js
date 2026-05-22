@@ -159,3 +159,61 @@ export default function DashboardScreen({ navigation }) {
           </View>
         </View>
       </View>
+       {/* 🏦 SECCIÓN: SALDOS DE CUENTAS */}
+      <View style={styles.sectionHeader}>
+        <Text style={[styles.sectionTitle, { color: theme.textPrimary }]}>Tus Cuentas y Saldos</Text>
+        <Text style={[styles.sectionSubtitle, { color: theme.textSecondary }]}>Distribución líquida actual</Text>
+      </View>
+      
+      <View style={[styles.listCardContainer, { backgroundColor: theme.card, borderColor: theme.border }]}>
+        {accountBalances.map((acc, index) => (
+          <View 
+            key={acc.id} 
+            style={[
+              styles.accountRow, 
+              { borderColor: theme.border },
+              index === accountBalances.length - 1 && { borderBottomWidth: 0 }
+            ]}
+          >
+            <View style={styles.accountInfoLeft}>
+              <View style={[styles.accountIconDummy, { backgroundColor: theme.background }]}>
+                <Text style={styles.accountIconText}>💳</Text>
+              </View>
+              <Text style={[styles.accName, { color: theme.textPrimary }]}>{acc.name}</Text>
+            </View>
+            <Text style={[styles.accValue, { color: theme.textPrimary }]}>${acc.balance.toFixed(2)}</Text>
+          </View>
+        ))}
+      </View>
+
+      {/* 📊 SECCIÓN: GRÁFICO DE DISTRIBUCIÓN */}
+      <View style={styles.sectionHeader}>
+        <Text style={[styles.sectionTitle, { color: theme.textPrimary }]}>Distribución de Gastos</Text>
+        <Text style={[styles.sectionSubtitle, { color: theme.textSecondary }]}>Análisis proporcional por categorías</Text>
+      </View>
+
+      {chartData.length > 0 ? (
+        <View style={[styles.chartBox, { backgroundColor: theme.card, borderColor: theme.border }]}>
+          <PieChart
+            data={chartData}
+            width={SCREEN_WIDTH - normalize(32)}
+            height={normalize(180)}
+            chartConfig={{
+              color: (opacity = 1) => isDarkMode ? `rgba(248, 250, 252, ${opacity})` : `rgba(15, 23, 42, ${opacity})`,
+            }}
+            accessor={"population"}
+            backgroundColor={"transparent"}
+            paddingLeft={normalize(8)}
+            absolute
+          />
+        </View>
+      ) : (
+        <View style={[styles.emptyBox, { backgroundColor: theme.card, borderColor: theme.border }]}>
+          <Text style={[styles.emptyText, { color: theme.textSecondary }]}>No hay gastos registrados en este período.</Text>
+        </View>
+      )}
+      
+      <View style={{ height: normalize(24) }} />
+    </ScrollView>
+  );
+}
