@@ -133,3 +133,29 @@ export default function DashboardScreen({ navigation }) {
       style={[styles.container, { backgroundColor: theme.background }]} 
       showsVerticalScrollIndicator={false}
     ></ScrollView>
+    
+      {/* 💳 CARD PREMIUM: BALANCE GENERAL NETO */}
+      <View style={[styles.premiumCard, { backgroundColor: theme.premiumCard }]}>
+        <Text style={[styles.premiumLabel, { color: theme.premiumText }]}>BALANCE NETO DISPONIBLE</Text>
+        <Text style={[styles.premiumBalance, { color: balance >= 0 ? theme.success : theme.danger }]}>
+          ${balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+        </Text>
+        
+        <View style={styles.premiumRow}>
+          <View style={styles.flowContainer}>
+            <View style={[styles.indicatorDot, { backgroundColor: theme.success }]} />
+            <View>
+              <Text style={[styles.flowLabel, { color: theme.premiumText }]}>Ingresos</Text>
+              <Text style={styles.flowValue}>${income.toFixed(2)}</Text>
+            </View>
+          </View>
+
+          <View style={styles.flowContainer}>
+            <View style={[styles.indicatorDot, { backgroundColor: theme.danger }]} />
+            <View>
+              <Text style={[styles.flowLabel, { color: theme.premiumText }]}>Gastos</Text>
+              <Text style={styles.flowValue}>${expense.toFixed(2)}</Text>
+            </View>
+          </View>
+        </View>
+      </View>
