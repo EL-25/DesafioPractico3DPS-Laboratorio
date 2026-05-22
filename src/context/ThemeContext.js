@@ -4,17 +4,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const ThemeContext = createContext();
 
-// 🎨 DEFINICIÓN DE PALETAS DE COLORES FINTECH
+//DEFINICIÓN DE PALETAS DE COLORES FINTECH
 export const lightTheme = {
   dark: false,
-  background: '#F8FAFC',       // Fondo general grisáceo suave
-  card: '#FFFFFF',             // Tarjetas e inputs blancos
-  textPrimary: '#0F172A',      // Slate 900 (Textos principales)
-  textSecondary: '#64748B',    // Slate 500 (Subtítulos)
-  border: '#E2E8F0',           // Bordes limpios
-  premiumCard: '#1E293B',      // Tarjeta de balance azul oscuro permanente
+  background: '#F8FAFC',
+  card: '#FFFFFF',
+  textPrimary: '#0F172A',
+  textSecondary: '#64748B',
+  border: '#E2E8F0',
+  premiumCard: '#1E293B',
   premiumText: '#94A3B8',
-  accent: '#6366F1',           // Indigo para botones y avatares
+  accent: '#6366F1',
   success: '#10B981',
   danger: '#EF4444',
   warning: '#E65100',
@@ -22,14 +22,14 @@ export const lightTheme = {
 
 export const darkTheme = {
   dark: true,
-  background: '#0F172A',       // Slate 900 (Fondo oscuro profundo)
-  card: '#1E293B',             // Slate 800 (Tarjetas oscuras)
-  textPrimary: '#F8FAFC',      // Texto blanco/gris claro
-  textSecondary: '#94A3B8',    // Texto secundario atenuado
-  border: '#334155',           // Bordes oscuros integrados
-  premiumCard: '#1E293B',      // Mismo color para consistencia visual
+  background: '#0F172A',
+  card: '#1E293B',
+  textPrimary: '#F8FAFC',
+  textSecondary: '#94A3B8',
+  border: '#334155',
+  premiumCard: '#1E293B',
   premiumText: '#94A3B8',
-  accent: '#818CF8',           // Indigo brillante adaptado a modo oscuro
+  accent: '#818CF8',
   success: '#34D399',
   danger: '#F87171',
   warning: '#FBBF24',
