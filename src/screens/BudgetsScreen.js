@@ -38,6 +38,7 @@ export default function BudgetsScreen() {
     addBudget, 
     deleteBudget 
   } = useContext(FinanceContext) || {};
+  
   // 2. Consumo del tema global (Mismo mecanismo de Dashboard)
   const { theme, isDarkMode } = useContext(ThemeContext) || {};
   
@@ -46,6 +47,7 @@ export default function BudgetsScreen() {
   
   // Estado para controlar visualmente el enfoque del teclado en el input numérico
   const [isLimitFocused, setIsLimitFocused] = useState(false);
+
   // OPTIMIZACIÓN: Pre-calcular los gastos mensuales agrupados por categoría
   const spentByCategory = useMemo(() => {
     const currentYearMonth = new Date().toISOString().slice(0, 7); 
@@ -67,7 +69,8 @@ export default function BudgetsScreen() {
 
     return totals;
   }, [transactions]);
-   const handleSave = async () => {
+
+  const handleSave = async () => {
     const cleanCategory = category.trim();
     const cleanLimit = limit.trim().replace(',', '.');
 
@@ -131,7 +134,7 @@ export default function BudgetsScreen() {
       ]
     );
   };
-  
+
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
       {/* SECCIÓN CREAR / CONFIGURAR */}
