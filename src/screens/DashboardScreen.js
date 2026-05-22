@@ -79,3 +79,57 @@ export default function DashboardScreen({ navigation }) {
       { cancelable: true }
     );
   };
+  
+  // Sincronización del Header nativo con los colores del tema persistido
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => (
+        <View style={styles.headerProfileCard}>
+          <View style={[styles.avatarCircle, { backgroundColor: theme.accent }]}>
+            <Text style={styles.avatarText}>{getInitials(formattedUserGreeting)}</Text>
+          </View>
+          <View style={styles.profileInfoContainer}>
+            <Text style={[styles.welcomeLabel, { color: theme.textSecondary }]}>Resumen de Cuenta</Text>
+            <Text style={[styles.userName, { color: theme.textPrimary }]} numberOfLines={1}>{formattedUserGreeting}</Text>
+          </View>
+        </View>
+      ),
+      headerRight: () => (
+        <View style={styles.headerRightContainer}>
+          {/* 🌓 SWITCH INTERACTIVO DE TEMA (MODO OSCURO / CLARO) */}
+          <TouchableOpacity 
+            style={[styles.headerIconTouch, { marginRight: normalize(4) }]} 
+            onPress={toggleTheme}
+            activeOpacity={0.6}
+          >
+            <Ionicons 
+              name={isDarkMode ? "sun-outline" : "moon-outline"} 
+              size={normalize(20)} 
+              color={isDarkMode ? theme.warning : theme.textPrimary} 
+            />
+          </TouchableOpacity>
+          
+          <TouchableOpacity 
+            style={styles.headerLogoutButton} 
+            onPress={handleLogoutPress} 
+            activeOpacity={0.6}
+          >
+            <Ionicons name="log-out-outline" size={normalize(20)} color={theme.danger} />
+          </TouchableOpacity>
+        </View>
+      ),
+      headerStyle: {
+        height: Platform.OS === 'ios' ? normalize(100) : normalize(90), 
+        backgroundColor: theme.card, // Fondo dinámico del Header
+        borderBottomWidth: 1,
+        borderBottomColor: theme.border,
+      },
+      headerShadowVisible: false,
+    });
+  }, [navigation, formattedUserGreeting, theme, isDarkMode]);
+
+  return (
+    <ScrollView 
+      style={[styles.container, { backgroundColor: theme.background }]} 
+      showsVerticalScrollIndicator={false}
+    ></ScrollView>
