@@ -16,3 +16,25 @@ import { FinanceContext } from '../context/FinanceContext';
 // 1. Importamos el contexto del tema que creaste
 import { ThemeContext } from '../context/ThemeContext'; 
 import BudgetProgressBar from '../components/BudgetProgressBar';
+
+// --- CONFIGURACIÓN DE RESPONSIVIDAD DINÁMICA ---
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
+const scale = SCREEN_WIDTH / 360; 
+
+function normalize(size) {
+  const newSize = size * scale;
+  if (Platform.OS === 'android') {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 1;
+  }
+  return Math.round(PixelRatio.roundToNearestPixel(newSize));
+}
+
+export default function BudgetsScreen() {
+  // Consumo de datos financieros
+  const { 
+    budgets = [], 
+    transactions = [], 
+    allCategories = [], 
+    addBudget, 
+    deleteBudget 
+  } = useContext(FinanceContext) || {};
