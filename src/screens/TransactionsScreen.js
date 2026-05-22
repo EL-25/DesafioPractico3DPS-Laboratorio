@@ -51,7 +51,7 @@ export default function TransactionsScreen() {
   } = useContext(FinanceContext) || {};
 
   const { theme, isDarkMode } = useContext(ThemeContext); 
-  
+
   // --- ESTADOS DEL FORMULARIO DE CAPTURA/EDICIÓN ---
   const [editingId, setEditingId] = useState(null);
   const [amount, setAmount] = useState('$');
@@ -81,6 +81,7 @@ export default function TransactionsScreen() {
   const [isTicketVisible, setIsTicketVisible] = useState(false);
 
   const displayAccounts = accounts.length > 0 ? accounts : DEFAULT_ACCOUNTS;
+
   useEffect(() => {
     const initializeDefaultAccounts = async () => {
       if (accounts.length === 0 && typeof addAccount === 'function') {
